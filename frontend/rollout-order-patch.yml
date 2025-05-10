@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  minReadySeconds: 10
+  template:
+    spec:
+      initContainers:
+      - name: wait-for-backend
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z backend-service 3000; do echo "Waiting for Backend"; sleep 2; done']

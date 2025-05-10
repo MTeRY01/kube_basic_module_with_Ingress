@@ -1,0 +1,5 @@
+resources:
+  - db_deploy.yml
+  - db_cluster_ip.yml
+# patchesStrategicMerge:
+# - rollout-order-patch.yml  
