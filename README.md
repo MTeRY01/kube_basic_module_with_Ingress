@@ -18,8 +18,8 @@ kubectl get nodes
 # Apply Kustomize manifests
 kubectl apply -k ./kube/
 
-# Force restart all deployments in the namespace
-kubectl rollout restart deployment -n trainer-portal --all
+# Force restart for backend if it does start before DB
+kubectl rollout restart deployment/backend-deploy -n trainer-portal
 
 # Monitor backend deployment rollout
 kubectl rollout status deployment/backend-deploy -n trainer-portal
