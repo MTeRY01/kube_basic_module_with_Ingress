@@ -2,7 +2,7 @@
 
 ## ✅ Kubernetes Module Usage
 
-Use the following steps to configure access and deploy your workloads:
+Use the following steps to configure access, apply your manifests with Kustomize, and manage deployments:
 
 ```bash
 # Backup existing kubeconfig
@@ -14,6 +14,9 @@ chmod 600 ~/.kube/config
 
 # Verify cluster access
 kubectl get nodes
+
+# Apply Kustomize manifests
+kubectl apply -k ./kube/
 
 # Force restart all deployments in the namespace
 kubectl rollout restart deployment -n trainer-portal --all
