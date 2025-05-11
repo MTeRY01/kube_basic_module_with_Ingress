@@ -1,26 +1,28 @@
-# kube_basic_module
+---
 
-Cluster Configuration
+## ✅ Kubernetes Module Usage
+
+Use the following steps to configure access and deploy your workloads:
+
+```bash
 # Backup existing kubeconfig
 mv ~/.kube/config ~/.kube/config_backup
 
-# Apply Terraform outputs
+# Set kubeconfig from Terraform output
 terraform output kube_config > ~/.kube/config
 chmod 600 ~/.kube/config
 
-# Verify access
+# Verify cluster access
 kubectl get nodes
 
-Deployment Management
-# Force restart deployments (if patches fail)
+# Force restart all deployments in the namespace
 kubectl rollout restart deployment -n trainer-portal --all
 
-# Monitor rollout progress
+# Monitor backend deployment rollout
 kubectl rollout status deployment/backend-deploy -n trainer-portal
 
-Ingress Verification
-# Check ingress controller
+# Check ingress controller pods and services
 kubectl get pods,svc -n ingress-nginx
 
-# Get external IP
+# Get the external IP for ingress access
 kubectl get ingress -n trainer-portal
